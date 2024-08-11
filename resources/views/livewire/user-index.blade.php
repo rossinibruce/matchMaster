@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col mb-3">
                         <label for="email" class="form-label">E-mail</label>
-                        <input type="text" class="form-control" id="email" name="user[email]" value="{{ $user->email }}">
+                        <input type="email" class="form-control" id="email" name="user[email]" value="{{ $user->email }}">
                     </div>
                 </div>
                 <div class="row">
@@ -26,9 +26,7 @@
                         <input type="text" class="form-control" id="cpf" name="person[cpf]" value="{{ $person->cpf }}">
                     </div>
                 </div>
-            </div>
 
-            <div class="card-footer">
                 <div class="d-flex justify-content-end">
                     <a href="{{ route('home') }}" class="btn btn-danger me-2">Voltar</a>
                     <button type="submit" class="btn btn-primary">Salvar</button>

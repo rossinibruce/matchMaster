@@ -10,7 +10,7 @@ class Person extends Model
 {
     protected $table = 'persons';
 
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -27,5 +27,10 @@ class Person extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class, 'persons_has_teams', 'person_id', 'team_id');
     }
 }

@@ -15,6 +15,7 @@ class PersonSeeder extends Seeder
     {
         $persons = array(
             array('name' => 'Bruce Gabriel', 'lastname' => 'Rossini', 'cpf' => '09604088947', 'user_id' => 1),
+            array('name' => 'Convidado', 'lastname' => 'Teste', 'cpf' => '84504623048', 'user_id' => 2),
         );
         
         foreach ($persons as $person) {

@@ -55,6 +55,7 @@ class RegisterController extends Controller
             'cpf' => ['required', 'string', 'cpf', 'max:20', 'unique:persons'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'role_id' => ['required'],
         ]);
     }
 
@@ -66,10 +67,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         $user = User::create([
             'email' => $data['email'],
             'email_verified_at' => now(),
-            'password' => Hash::make($data['password']),
+            'password' => bcrypt($data['password']),
+            'role_id' => $data['role_id'],
         ]);
 
         $person = Person::create([

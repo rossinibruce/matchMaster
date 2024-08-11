@@ -1,4 +1,4 @@
-roles<?php
+<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('persons', function (Blueprint $table) {
+        Schema::create('teams', function (Blueprint $table) {
             $table->id();
+            $table->string('logo')->nullable();
             $table->string('name');
-            $table->string('lastname');
-            $table->string('cpf')->unique();
+            $table->string('description')->nullable();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('persons');
+        Schema::dropIfExists('teams');
     }
 };
