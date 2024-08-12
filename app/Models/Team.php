@@ -15,12 +15,17 @@ class Team extends Model
         'logo',
         'name',
         'description',
-        'user_id',
+        'person_id',
     ];
+
+    public function person()
+    {
+        return $this->belongsTo(Person::class, 'person_id', 'id');
+    }
 
     public function persons()
     {
-        return $this->belongsToMany(Person::class, 'persons_has_teams', 'team_id', 'person_id');
+        return $this->belongsToMany(Person::class, 'persons_has_teams', 'team_id', 'person_id')->withTimestamps();
     }
 
     public function sports()

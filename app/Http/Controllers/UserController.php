@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Person;
+use App\Models\Sport;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -13,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return redirect()->route('users.edit', Auth::user()->id);
     }
 
     /**
@@ -45,20 +47,17 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
-    }
-
-    public function editProfile($id)
-    {
-        $user = User::where('id', $id)->first();
         $person = Person::where('user_id', $user->id)->first();
+        $sports = Sport::get();
 
-        return view('app.users.index', compact('user', 'person'));
+        return view('app.users.index', compact('user', 'person', 'sports'));
     }
 
-    public function updateProfile(Request $request, $id)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, User $user)
     {
-        $user = User::where('id', $id)->first();
         $person = Person::where('user_id', $user->id)->first();
 
         $userRequest = $request->input('user');
@@ -67,15 +66,10 @@ class UserController extends Controller
         $personRequest = $request->input('person');
         $person->update($personRequest);
 
-        return redirect()->route('users.edit-profile', $id);
-    }
+        $person->sports()->sync($request->input('personSports'));
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request)
-    {
-        //
+
+        return redirect()->route('users.edit', $user->id);
     }
 
     /**

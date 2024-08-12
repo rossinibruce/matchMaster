@@ -14,14 +14,14 @@ class TeamSeeder extends Seeder
     public function run(): void
     {
         $teams = array(
-            array('name' => 'ART FC', 'description' => 'Futebol e resenha', 'user_id' => 1),
+            array('name' => 'ART FC', 'description' => 'Futebol e resenha', 'person_id' => 1),
         );
         
         foreach ($teams as $team) {
             Team::create([
                 'name' => $team['name'],
                 'description' => $team['description'],
-                'user_id' => $team['user_id'],
+                'person_id' => $team['person_id'],
             ]);
         }
     }

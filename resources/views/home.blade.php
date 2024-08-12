@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="row">
             <div class="col-md-4 p-2">
-                @livewire('index-my-teams', ['user' => Auth::user()])
+                @livewire('index-my-teams')
             </div>
             
             <div class="col-md-4 p-2">

@@ -33,4 +33,9 @@ class Person extends Model
     {
         return $this->belongsToMany(Team::class, 'persons_has_teams', 'person_id', 'team_id');
     }
+
+    public function sports()
+    {
+        return $this->belongsToMany(Sport::class, 'persons_has_sports', 'person_id', 'sport_id')->withTimestamps();
+    }
 }

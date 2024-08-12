@@ -42,7 +42,7 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         $team = Team::create($request->input('team'));
-        $arrayTeam = [$request->input('team.user_id')];
+        $arrayTeam = [$request->input('team.person_id')];
         $team->persons()->attach($arrayTeam);
 
         $team->sports()->sync($request->input('teamSports'));
@@ -86,5 +86,10 @@ class TeamController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function searchTeams()
+    {
+        return view('app.teams.partials.search-teams');
     }
 }

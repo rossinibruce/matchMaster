@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                @livewire('user-index', ['user' => $user, 'person' => $person ])
+                @include('app.users.partials.form')
             </div>
         </div>
     </div>

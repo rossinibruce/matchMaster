@@ -14,10 +14,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-    Route::get('/profile/{id}', [UserController::class, 'editProfile'])->name('users.edit-profile');
-    Route::post('/update-profile/{id}', [UserController::class, 'updateProfile'])->name('users.update-profile');
-
+    Route::resource('users', UserController::class);
     Route::resource('teams', TeamController::class);
+    Route::get('/search-teams', [TeamController::class, 'searchTeams'])->name('teams.search-teams');
+    Route::post('/entry-request/{id}', [TeamController::class, 'entryRequest'])->name('teams.entry-request');
 
 });
 
